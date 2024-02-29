@@ -39,7 +39,7 @@ function App() {
         res.json().then((errorData) => {
           setMsg(
             `Server error: ${res.status} - ${
-              errorData.detail || 'Unknown error'
+              errorData.detail || 'Unknown error' 
             }`
           )
         })
