@@ -1,12 +1,11 @@
 name: Xinference CD for DockerHub
 
 on:
-  schedule:
-    - cron: '0 18 * * *'
   push:
+    branches:
+      - main
     tags:
       - '*'
-  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -33,7 +32,6 @@ jobs:
 
       - name: Build and push Docker image
         shell: bash
-        if: ${{ github.repository == 'xorbitsai/inference' }}
         env:
           DOCKER_ORG: ${{ secrets.DOCKERHUB_USERNAME }}
           PY_VERSION: ${{ matrix.python-version }}
